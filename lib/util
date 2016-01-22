@@ -46,9 +46,9 @@ function update_nodejs {
   fi
 
   if [ -n "$NPM_VERSION_URL" ]; then
-    local NPM_WANTED_VERSION="@$(curl --silent --max-time 5 ${NPM_VERSION_URL})"
+    local NPM_WANTED_VERSION=$(curl --silent --max-time 5 ${NPM_VERSION_URL})
   else
-    local NPM_WANTED_VERSION="(npm view npm version)"
+    local NPM_WANTED_VERSION=$(npm view npm version)
   fi
 
   if [ $NPM_WANTED_VERSION != $(npm --version) ]; then
